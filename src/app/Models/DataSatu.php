@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use \DateTimeInterface;
+use App\Models\DataDua;
 use App\Traits\MultiTenantModelTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DataSatu extends Model
 {
@@ -43,5 +44,10 @@ class DataSatu extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function dataDua()
+    {
+        return $this->belongsTo(DataDua::class, 'id_data_satu');
     }
 }

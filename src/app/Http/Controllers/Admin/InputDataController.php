@@ -39,12 +39,12 @@ class InputDataController extends Controller
                 $crudRoutePart = 'input-datas';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -100,11 +100,11 @@ class InputDataController extends Controller
 
         $data_satus = DataSatu::pluck('nama', 'id');
 
-        $data_duas = DataDua::pluck('nama', 'id');
+        $data_duas = DataDua::pluck('nama', 'id', 'id_data_satu');
 
-        $data_tigas = DataTiga::pluck('nama', 'id');
+        $data_tigas = DataTiga::pluck('nama', 'id', 'id_data_dua');
 
-        $data_empats = DataEmpat::pluck('nama', 'id');
+        $data_empats = DataEmpat::pluck('nama', 'id', 'id_data_tiga');
 
         return view('admin.inputDatas.create', compact('data_duas', 'data_empats', 'data_satus', 'data_tigas'));
     }

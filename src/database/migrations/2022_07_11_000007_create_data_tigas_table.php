@@ -13,6 +13,7 @@ class CreateDataTigasTable extends Migration
             $table->string('nama')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->integer('id_data_dua');
         });
     }
 }

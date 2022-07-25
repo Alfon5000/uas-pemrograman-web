@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use \DateTimeInterface;
+use App\Models\DataDua;
+use App\Models\DataEmpat;
 use App\Traits\MultiTenantModelTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DataTiga extends Model
 {
@@ -28,6 +30,7 @@ class DataTiga extends Model
         'updated_at',
         'deleted_at',
         'team_id',
+        'id_data_dua',
     ];
 
     public function dataTigaInputDatas()
@@ -43,5 +46,15 @@ class DataTiga extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function dataDua()
+    {
+        return $this->hasMany(DataDua::class);
+    }
+
+    public function dataEmpat()
+    {
+        return $this->belongsTo(DataEmpat::class, 'id_data_tiga');
     }
 }
