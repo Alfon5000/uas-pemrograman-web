@@ -48,6 +48,6 @@ class DataSatu extends Model
 
     public function dataDua()
     {
-        return $this->belongsTo(DataDua::class, 'id_data_satu');
+        return $this->hasMany(DataDua::class);
     }
 }

@@ -49,6 +49,6 @@ class DataEmpat extends Model
 
     public function dataTiga()
     {
-        return $this->hasMany(DataTiga::class);
+        return $this->belongsTo(DataTiga::class, 'id_data_tiga');
     }
 }

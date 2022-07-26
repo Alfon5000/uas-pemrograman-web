@@ -134,7 +134,33 @@
     <script>
         $(document).ready(function() {
             $('#data_satus').on('change', function() {
-                let idSatu = this.value;
+                let idDataSatu = $(this).val();
+
+                if (idDataSatu) {
+                    $.ajax({
+                        url: 'getDataDua/?id=' + idDataSatu,
+                        type: 'GET',
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#data_duas').empty();
+                                $('#data_duas').append('<option hidden>Choose Course</option>');
+                                $.each(data, function(id, nama) {
+                                    $('select[name="data_duas[]"]').append(
+                                        '<option value="' + id + '">' + data_satus
+                                        .nama + '</option>');
+                                });
+                            } else {
+                                $('#data_duas').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#data_duas').empty();
+                }
             });
         });
     </script>

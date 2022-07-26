@@ -61,6 +61,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('team-members', 'TeamMembersController@index')->name('team-members.index');
     Route::post('team-members', 'TeamMembersController@invite')->name('team-members.invite');
+    Route::get('getDataDua/?id={id}', function ($id) {
+        $data_duas = App\Models\DataDua::where('id_data_satu', $id)->get();
+        return response()->json($data_duas);
+    });
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
